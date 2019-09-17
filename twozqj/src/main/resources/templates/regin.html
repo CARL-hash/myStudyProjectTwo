@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+    <script type="text/javascript" src="../static/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" >
+        $(function(){
+
+          $.getJSON(
+              "/user/findAllType.do",
+              function(data){
+                  for(var i in data){
+                      alert(data[i].name)
+                      // 不能使用th:name 设置属性名称，他不会传递
+                      $("#typeId").append("<input type='checkbox' name='typeIds'  value='"+data[i].id+"'> "+data[i].name+" ")
+                  }
+              }
+          )
+
+        })
+    </script>
+</head>
+<body>
+<form action="/user/regin.do" method="post">
+<table>
+    <tr>
+        <td>姓名：<input type="text" th:name = "name"></td>
+    </tr>
+
+    <tr>
+        <td>密码：<input type="text" th:name = "password"></td>
+    </tr>
+
+    <tr>
+        <td>类型：
+        </td>
+        <td id="typeId">
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><input type="submit" value="注册"></td>
+    </tr>
+
+</table>
+</form>
+</body>
+</html>

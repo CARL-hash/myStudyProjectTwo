@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>信息</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+    <script type="text/javascript" src="../static/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" >
+        $(function(){
+
+            $("#ToSendPage").click(function () {
+                location.href ="/user/ToSendPage.do"
+            });
+
+            $("#userList").click(function () {
+                location.href ="/user/findAllUsers.do"
+            });
+
+            $("#ToPutPhotoPage").click(function () {
+                location.href ="/user/ToPutPhotoPage.do"
+            });
+
+
+        })
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <td><button id="ToSendPage">发送消息</button></td>
+    </tr>
+
+    <tr>
+        <td><button id="userList">信息列表</button></td>
+    </tr>
+
+    <tr>
+        <td><button id="ToPutPhotoPage">上传照片</button></td>
+    </tr>
+
+</table>
+</body>
+</html>

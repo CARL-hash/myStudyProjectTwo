@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+    <script type="text/javascript" src="../static/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" >
+
+        function find(pageNum){
+            var name = $("#name").val();
+            location.href = "/user/findAllUsers.do?pageNum="+pageNum+"&name="+name;
+
+        }
+
+        $(function(){
+
+
+        })
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <td>
+            <input type="text" id="name" th:value="${name}">
+        </td>
+        <td><button th:onclick="|find(0)|">查找</button></td>
+    </tr>
+    <tr>
+        <td>姓名</td>
+        <td>密码</td>
+        <td>类型</td>
+    </tr>
+    <tr th:each="user:${page.getContent()}">
+        <td th:text="${user.name}">姓名</td>
+        <td th:text="${user.password}">密码</td>
+        <td th:each="type:${user.typeList}" th:text="${type.name}">
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <button th:onclick="|find(0)|">首页</button>
+            <button th:onclick="'find('+${page.number - 1}+')'" th:if="${not page.isFirst()}">上一页</button>
+            <button th:onclick="'find('+${page.number + 1}+')'" th:if="${not page.isLast()}">下一页</button>
+            <button th:onclick="|find(${page.totalPages - 1})|" >末页</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

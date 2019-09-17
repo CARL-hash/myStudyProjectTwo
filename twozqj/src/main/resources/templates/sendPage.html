@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发送信息</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+    <script type="text/javascript" src="../static/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" >
+        
+        $(function(){
+
+
+        })
+    </script>
+</head>
+<body>
+<form action="/user/sendInfroMation.do" method="post">
+<table>
+    <tr>
+        <td colspan="2">
+            <img th:src="${photo}" alt="加载失败">
+        </td>
+    </tr>
+
+    <tr>
+        <td>信息标题：</td>
+        <td><input type="text" th:name="title"></td>
+    </tr>
+
+    <tr>
+        <td>发送：</td>
+        <td><textarea th:name="content" rows="5" cols="15"></textarea></td>
+    </tr>
+
+    <tr>
+        <td>发送到：</td>
+        <td><input type="text" th:name="user"></td>
+    </tr>
+
+    <tr>
+        <td colspan="2"><input type="submit" value="发送"></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

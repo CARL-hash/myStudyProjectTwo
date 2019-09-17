@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+    <script type="text/javascript" src="../static/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" >
+        $(function () {
+            $("#login").click(function () {
+                // 获取姓名
+                var name = $("#name").val();
+                // 获取密码
+                var password = $("#password").val();
+
+                // $.post(
+                //     "/user/login.do",
+                //     {"name":name,"password":password},
+                //     function(data){
+                //         alert(data)
+                //         if(data == true){
+                //             alert(登录成功);
+                //            // location.href = "/user/findAllUsers.list";
+                //         }
+                //
+                //     },"text"
+                // )
+                // 异步使用第一层ajax封装,最为稳妥
+                $.ajax({
+                    url:"/user/login.do",
+                    data:{"name":name,"password":password},
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        if(data){
+                            alert("登录成功")
+                            location.href  = "/user/toMenuListPage.do";
+                        }else{
+                           alert("登录失败，请重新登录");
+                           location.reload();
+                        }
+                    }
+                })
+
+                // $.getJSON(
+                //     "/user/login.do",
+                //     {"name":name,"password":password},
+                //     function(data){
+                //                 alert(data)
+                //                 if(data){
+                //                     alert(登录成功);
+                //                 }
+                //     }
+                // )
+
+
+
+            })
+        })
+
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+        <td><input type="text" id="password"></td>
+    </tr>
+    <tr>
+        <td>
+            <button id="login">登录</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
